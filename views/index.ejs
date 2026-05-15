@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body class="bg-light">
+
+    <h1><%= title %></h1>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="#">Configuracoes</a>
+            <a class="nav-link" href="#">Preco</a>
+            <a class="nav-link disabled" aria-disabled="true">Abrir</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm form-card">
+            <div class="card-header bg-primary text-white">
+              <h5 class="card-title mb-0">Abrir Chamado</h5>
+            </div>
+            <div class="card-body">
+              <form action="/abrir" method="POST" id="formChamado">
+                <div class="mb-3">
+                  <label for="solicitante" class="form-label">Solicitante</label>
+                  <input type="text" class="form-control" id="solicitante" name="solicitante" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Setor</label>
+                  <select class="form-control" id="setor" name="setor" required>
+                    <option value="">Selecione o setor</option>
+                    <option value="TI">TI</option>
+                    <option value="RH">RH</option>
+                    <option value="Financeiro">Financeiro</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="descricao" class="form-label">Descricao do Problema</label>
+                  <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Abrir Chamado</button>
+              </form>
+            </div>
+          </div> 
+        </div>
+    </div>
+
+    <!--Fila de Chamados -->
+    <div class="col-md-8">
+      <h4 class="mb-3">Fila de Chamados</h4>
+      <div class="row">
+        <% chamados.forEach(chamado => { %>
+          <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+              <div class="card-header">
+                <h5 class="card-title mb-0"><%= chamado.solicitante %></h5>
+              </div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-text"><%= chamado.descricao %></h5>
+                  <span class="card-text"><small class="text-muted">Setor: <%= chamado.setor %></small></span>
+                </div>
+                  <p class="card-text mt-2"><small><strong>Solicitante: <%= chamado.solicitante %></strong></small></p>
+                  <p class="card-text text-muted">"<%= chamado.descricao %>"</p>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
