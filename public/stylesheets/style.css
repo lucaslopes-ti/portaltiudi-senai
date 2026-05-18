@@ -7,3 +7,24 @@ a {
   color: #00B7FF;
 }
 
+.chamado-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+
+/* Estado final dos cards */
+.chamado-card.mostrar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn-enviar {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-enviar:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
