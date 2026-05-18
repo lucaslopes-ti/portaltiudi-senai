@@ -7,9 +7,9 @@ router.get('/', async function(req, res, next) {
   try {
     const resultado = await db.query('SELECT * FROM portaludi ORDER BY data_abertura DESC')
     res.render('index', { title: 'Portal de Chamados - SENAI', chamados: resultado.rows });
-} catch (err){
-  console.error(err);
-  res.status(500).send('Erro ao buscar chamados');
+  } catch (err){
+    console.error('Erro ao buscar chamados:', err.message);
+    res.status(500).send('Erro ao buscar chamados: ' + err.message);
   }
 });
 
